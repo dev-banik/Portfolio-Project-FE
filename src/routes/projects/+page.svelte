@@ -70,6 +70,10 @@
 	});
 </script>
 
+<svelte:head>
+    <title>Projects | Portfolio | Parthib Banik</title>
+</svelte:head>
+
 <!-- <SearchPage {title} on:search={onSearch}> -->
 
 <div style="display: flex; justify-content: center; align-items: center; height: 20vh; font-size: 4em; font-weight: bold;">

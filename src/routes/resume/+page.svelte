@@ -5,6 +5,10 @@
 	import CommonPage from '$lib/components/CommonPage.svelte';
 </script>
 
+<svelte:head>
+    <title>Resume | Portfolio | Parthib Banik</title>
+</svelte:head>
+
 <CommonPage {title}>
 	<div class="resume">
 		{#if data}

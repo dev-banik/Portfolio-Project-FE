@@ -6,6 +6,10 @@
 
 	import { base } from '$app/paths';
 	import UIcon from '../Icon/UIcon.svelte';
+	import Assets, { getAssetURL } from '$lib/data/assets';
+
+	let profileImage = Assets.ProfileLogoImg;
+	let resolvedProfileLogoImage = getAssetURL(profileImage);
 
 	$: currentRoute = $page.url.pathname;
 
@@ -26,16 +30,13 @@
 			href={`${base}/`}
 			class="nav-menu-left decoration-none w-auto md:w-150px lg:w-auto row flex flex-row items-center cursor-pointer px-4 text-[var(--secondary-text)] self-stretch hover:bg-[color:var(--main-hover)]"
 		>
-			<UIcon icon="i-carbon-code" classes="text-2em" />
-			<span
-				class="ml-2 text-md font-bold hidden md:inline overflow-hidden whitespace-nowrap text-ellipsis"
-				>{HOME.name} {HOME.lastName}
-			</span>
+			<img
+				src={resolvedProfileLogoImage}
+				alt="ProfileLogoImage"
+				class="profile-image w-[100px] h-[100px] object-cover"
+			/>
 		</a>
-		<div class="flex-1 block overflow-hidden md:hidden whitespace-nowrap text-ellipsis text-center">
-			{HOME.name}
-			{HOME.lastName}
-		</div>
+
 		<div class="flex-row flex-1 self-center h-full justify-center hidden md:flex">
 			{#each items as item (item.title)}
 				<a href={`${base}${item.to}`} class="nav-menu-item !text-[var(--secondary-text)]">
@@ -48,12 +49,6 @@
 			class="row h-full justify-center items-stretch m-l-auto md:m-l-0 w-auto md:w-150px gap-1 text-1.15em"
 		>
 			<div class="row hidden md:flex">
-				<a
-					href={`${base}/search`}
-					class="text-inherit col-center self-stretch px-2 hover:bg-[color:var(--main-hover)]"
-				>
-					<UIcon icon="i-carbon-search" />
-				</a>
 				<button
 					class="bg-transparent text-1em border-none cursor-pointer hover:bg-[color:var(--main-hover)] text-[var(--secondary-text)] px-2"
 					on:click={() => toggleTheme()}
@@ -90,14 +85,6 @@
 			{/each}
 		</div>
 		<div class="col gap-2 m-t-7">
-			<a
-				href={`${base}/search`}
-				class="text-inherit decoration-none px-6 py-3 gap-2 row hover:bg-[color:var(--main-hover)]"
-				on:click={() => toggleExpanded(false)}
-			>
-				<UIcon icon="i-carbon-search" />
-				<span>Search</span>
-			</a>
 			<button
 				class="bg-transparent text-1em border-none cursor-pointer px-6 py-3 gap-2 row hover:bg-[color:var(--main-hover)] text-[var(--secondary-text)] px-2"
 				on:click={() => toggleTheme()}
@@ -122,14 +109,14 @@
 		top: 0px;
 		z-index: 10;
 		padding: 0px 10px;
-		height: 50px;
+		height: 80px; /* Increase the height here */
 		border-bottom: 1px solid var(--secondary);
 		background-color: var(--main);
 
 		&-item {
 			text-decoration: none;
 			font-weight: 400;
-			padding: 10px 20px;
+			padding: 15px 20px; /* Adjust padding if needed */
 			color: inherit;
 			display: flex;
 			align-items: center;
@@ -137,6 +124,7 @@
 
 			&-label {
 				margin-left: 10px;
+				transition: all 0.3s ease;
 
 				@media (max-width: 950px) {
 					& {
@@ -145,20 +133,21 @@
 				}
 			}
 
-			&:hover {
-				background-color: var(--main-hover);
+			&:hover .nav-menu-item-label {
+				color: var(--primary-text); /* Original text color */
+				text-shadow: 0 0 5px #00f6ff, 0 0 10px #00f6ff, 0 0 20px #00f6ff, 0 0 40px #00f6ff; /* Neon effect */
 			}
 		}
 	}
 
 	.nav-menu-mobile {
 		z-index: -1;
-		max-height: calc(100vh - 50px - 1px);
-		min-height: calc(100vh - 50px - 1px);
+		max-height: calc(100vh - 80px - 1px); /* Adjust height here */
+		min-height: calc(100vh - 80px - 1px); /* Adjust height here */
 		width: 100%;
 		position: absolute;
 		background-color: var(--main);
-		top: 51px;
+		top: 81px; /* Adjust position here */
 		transform: translateY(-100vh);
 		transition-property: transform opacity;
 		transition: 400ms ease;

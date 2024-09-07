@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { title } from '@data/search';
 	import { filterItemsByQuery, type ItemOrSkill } from '$lib/utils/helpers';
 	import { onMount } from 'svelte';
 	import { base } from '$app/paths';
@@ -67,7 +66,7 @@
 	}
 </script>
 
-<SearchPage {title} on:search={(e) => (query = e.detail.search)}>
+<!-- <SearchPage {title} on:search={(e) => (query = e.detail.search)}>
 	<div class="flex flex-col items-stretch gap-10 p-2" />
 	{#if !query}
 		<div class="flex-1 self-center col-center m-t-10 gap-5 font-300 text-[var(--accent-text)]">
@@ -93,4 +92,4 @@
 			{/if}
 		</div>
 	{/if}
-</SearchPage>
+</SearchPage> -->

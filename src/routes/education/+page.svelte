@@ -42,6 +42,10 @@
 
 </script>
 
+<svelte:head>
+    <title>Education | Portfolio | Parthib Banik</title>
+</svelte:head>
+
 <!-- <SearchPage {title} {search} on:search={onSearch}> -->
 
 <div style="display: flex; justify-content: center; align-items: center; height: 20vh; font-size: 4em; font-weight: bold;">
